@@ -1,0 +1,5 @@
+Model,Accuracy,Precision,Recall,F1-Score,Train Time (s),Infer Time (s)
+Random Forest (ours),0.9921,0.9921,0.9921,0.9921,5.661,0.075
+Decision Tree,0.991,0.9911,0.991,0.991,0.326,0.003
+Linear SVM,0.9803,0.9803,0.9803,0.9803,0.45,0.01
+Logistic Regression,0.9784,0.9785,0.9784,0.9784,0.19,0.003

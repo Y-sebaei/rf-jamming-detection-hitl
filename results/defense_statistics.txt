@@ -1,0 +1,4 @@
+CV_MEAN=99.43 CV_STD=0.08 folds=[99.3, 99.39, 99.52, 99.43, 99.52]
+MEAN_ABS_OFFDIAG_CORR_top9=0.492
+TOTAL_GAIN_FAMILY_MEAN_CORR=0.721 (n=7 features)
+saved feature_correlation_top9.png

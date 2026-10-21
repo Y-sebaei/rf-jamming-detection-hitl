@@ -1,0 +1,11 @@
+feature
+max_magnitude_max
+rssi_std
+total_gain_db_mean
+total_gain_db_q25
+total_gain_db_q75
+avgpwr_db_max
+total_gain_db_q50
+base_pwr_db_q75
+rssi_mean
+max_magnitude_mean

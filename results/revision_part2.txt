@@ -1,0 +1,40 @@
+==========================================================================
+  EXPERIMENT E: random vs contiguous (order-preserving) split
+==========================================================================
+  A contiguous split keeps temporally adjacent windows together, so the
+  gap to the random split bounds the optimism of window-level splitting.
+  It also introduces any drift within a recording, so it is an upper bound.
+
+Location 1  (train 11468 / test 4914)
+  49 features: random  99.21%   contiguous  99.19%   gap  -0.02 pp
+   9 features: random  98.80%   contiguous  98.82%   gap  +0.02 pp
+  contiguous-split class-wise report (49 features):
+              precision    recall  f1-score   support
+
+           0       0.99      0.99      0.99      2457
+           1       0.99      0.99      0.99      2457
+
+    accuracy                           0.99      4914
+   macro avg       0.99      0.99      0.99      4914
+weighted avg       0.99      0.99      0.99      4914
+
+
+Location 2  (train 11468 / test 4914)
+  49 features: random  99.96%   contiguous  99.94%   gap  -0.02 pp
+   9 features: random  99.51%   contiguous  99.57%   gap  +0.06 pp
+
+Location 3  (train 11468 / test 4914)
+  49 features: random 100.00%   contiguous  99.98%   gap  -0.02 pp
+   9 features: random  99.90%   contiguous  99.78%   gap  -0.12 pp
+==========================================================================
+  EXPERIMENT F: label-free adaptation baselines (target Location 1)
+==========================================================================
+
+  no adaptation (9 feat.)                               53.55% +/- 2.52
+  per-location standardisation (no labels)              84.07% +/- 4.71
+  self-training, confident pseudo-labels (no labels)    57.13% +/- 3.00
+  800 random reviewer labels (alpha = 1.0)              94.83% +/- 2.38
+
+  pseudo-labels added (mean): 5817   of which correct: 62.4%
+
+Done.

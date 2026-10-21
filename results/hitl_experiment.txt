@@ -1,0 +1,83 @@
+Loaded  Loc1: (16382, 50)  Loc2: (16382, 50)  Loc3: (16382, 50)
+
+Training set  :   656 samples  (2% of Loc2 + 2% of Loc3)
+HITL pool     :  8191 samples  (Loc1 — unseen location)
+Final test    :  8191 samples  (Loc1 — held-out)
+
+============================================================
+BEFORE HITL  (all 49 features, Loc1 final_test): 0.5248
+============================================================
+Computing SHAP importances on training data...
+
+Top 9 SHAP-selected features:
+  1. max_magnitude_max  (mean |SHAP| = 0.06651)
+  2. noise_max  (mean |SHAP| = 0.03814)
+  3. avgpwr_db_max  (mean |SHAP| = 0.03644)
+  4. noise_q25  (mean |SHAP| = 0.03016)
+  5. noise_min  (mean |SHAP| = 0.02829)
+  6. total_gain_db_q50  (mean |SHAP| = 0.02308)
+  7. base_pwr_db_q25  (mean |SHAP| = 0.02259)
+  8. avgpwr_db_std  (mean |SHAP| = 0.02162)
+  9. noise_mean  (mean |SHAP| = 0.02096)
+
+Pre-HITL accuracy (9 features, Loc1 final_test): 0.5497
+
+Uncertain samples in HITL pool : 1698 / 8191
+Capping at 800 corrections.
+
+============================================================
+HITL — Expert accuracy: 100%
+============================================================
+Expert corrections applied: 800
+Post-HITL accuracy (100% expert): 0.9043  (improvement: +0.3545)
+              precision    recall  f1-score   support
+
+           0       0.98      0.82      0.90      4096
+           1       0.85      0.98      0.91      4095
+
+    accuracy                           0.90      8191
+   macro avg       0.91      0.90      0.90      8191
+weighted avg       0.91      0.90      0.90      8191
+
+
+============================================================
+HITL — Expert accuracy: 80%
+============================================================
+Expert corrections applied: 800
+Post-HITL accuracy (80% expert): 0.8544  (improvement: +0.3046)
+              precision    recall  f1-score   support
+
+           0       0.98      0.72      0.83      4096
+           1       0.78      0.99      0.87      4095
+
+    accuracy                           0.85      8191
+   macro avg       0.88      0.85      0.85      8191
+weighted avg       0.88      0.85      0.85      8191
+
+
+============================================================
+HITL — Expert accuracy: 50%
+============================================================
+Expert corrections applied: 800
+Post-HITL accuracy (50% expert): 0.5534  (improvement: +0.0037)
+              precision    recall  f1-score   support
+
+           0       0.89      0.12      0.22      4096
+           1       0.53      0.98      0.69      4095
+
+    accuracy                           0.55      8191
+   macro avg       0.71      0.55      0.45      8191
+weighted avg       0.71      0.55      0.45      8191
+
+
+============================================================
+RESULTS SUMMARY
+============================================================
+Before HITL   (49 features)       : 0.5248
+Pre-HITL      (9 features)         : 0.5497
+Post-HITL     (100% expert accuracy) : 0.9043  (+35.5 pp)
+Post-HITL     (80% expert accuracy) : 0.8544  (+30.5 pp)
+Post-HITL     (50% expert accuracy) : 0.5534  (+0.4 pp)
+============================================================
+Graph saved to hitl_expertise_comparison.png
+Graph saved to C:\Users\YEHIA KHALED\OneDrive\Desktop\Masters_Thesis_Template\img\hitl_expertise_comparison.png

@@ -1,0 +1,127 @@
+==========================================================================
+  EXPERIMENT A: uncertainty band vs random sampling at equal budget
+==========================================================================
+
+Target Location 1   (alpha = 1.0, 5 seeds)
+  no adaptation          :  53.55% +/- 2.52
+  budget      uncertainty                random        diff (pp)
+     100    77.61% +/- 5.09       85.69% +/- 3.58       -8.07
+     200    82.25% +/- 2.96       89.95% +/- 3.39       -7.71
+     400    81.81% +/- 4.63       93.16% +/- 2.60      -11.35
+     800    83.10% +/- 4.70       94.83% +/- 2.38      -11.73
+  band size (mean)       : 1356.2 / 8191
+  benign share of selected: band 76.1%   random 48.7%
+
+Target Location 2   (alpha = 1.0, 5 seeds)
+  no adaptation          :  98.04% +/- 0.79
+  budget      uncertainty                random        diff (pp)
+     100    99.21% +/- 0.31       98.31% +/- 0.58       +0.90
+     200    99.41% +/- 0.15       98.64% +/- 0.49       +0.77
+     400    99.59% +/- 0.12       98.96% +/- 0.31       +0.63
+     800    99.62% +/- 0.08       99.20% +/- 0.24       +0.42
+  band size (mean)       : 560.0 / 8191
+  benign share of selected: band 4.3%   random 48.7%
+
+Target Location 3   (alpha = 1.0, 5 seeds)
+  no adaptation          :  91.07% +/- 2.52
+  budget      uncertainty                random        diff (pp)
+     100    97.17% +/- 0.35       95.54% +/- 0.95       +1.63
+     200    97.56% +/- 0.36       96.64% +/- 0.74       +0.91
+     400    97.84% +/- 0.29       97.51% +/- 0.45       +0.33
+     800    98.04% +/- 0.54       98.13% +/- 0.29       -0.09
+  band size (mean)       : 1619.6 / 8191
+  benign share of selected: band 78.2%   random 48.7%
+
+Paired per-seed difference (uncertainty - random), target Location 1:
+  budget  100: mean  -8.07 pp   sd 6.80   per seed [-3.35, -1.62, -12.0, -19.63, -3.77]   wins 0/5
+  budget  200: mean  -7.71 pp   sd 3.52   per seed [-2.72, -5.42, -11.56, -11.79, -7.04]   wins 0/5
+  budget  400: mean -11.35 pp   sd 4.80   per seed [-4.72, -9.24, -11.43, -19.52, -11.84]   wins 0/5
+  budget  800: mean -11.73 pp   sd 5.01   per seed [-4.96, -10.55, -12.86, -20.33, -9.94]   wins 0/5
+
+95% CI half-widths (target Location 1, budget 800):
+  uncertainty 83.10% +/- 6.53
+  random      94.83% +/- 3.30
+
+Reference run (seed 42, Location 1, budget 800) class-wise:
+--- uncertainty band ---
+              precision    recall  f1-score   support
+
+           0       0.98      0.82      0.90      4096
+           1       0.85      0.98      0.91      4095
+
+    accuracy                           0.90      8191
+   macro avg       0.91      0.90      0.90      8191
+weighted avg       0.91      0.90      0.90      8191
+
+--- random sampling ---
+              precision    recall  f1-score   support
+
+           0       0.95      0.95      0.95      4096
+           1       0.95      0.95      0.95      4095
+
+    accuracy                           0.95      8191
+   macro avg       0.95      0.95      0.95      8191
+weighted avg       0.95      0.95      0.95      8191
+
+==========================================================================
+  EXPERIMENT B: reviewer label accuracy sweep (target Location 1)
+==========================================================================
+  alpha        uncertainty                random
+    1.0     83.10% +/- 4.70       94.83% +/- 2.38
+    0.9     82.57% +/- 3.98       94.41% +/- 2.45
+    0.8     81.85% +/- 2.37       93.41% +/- 3.17
+    0.7     76.02% +/- 10.07       90.92% +/- 3.39
+    0.6     71.14% +/- 7.77       84.18% +/- 5.97
+    0.5     54.63% +/- 5.80       62.78% +/- 10.49
+==========================================================================
+  EXPERIMENT C: calibration of the probabilities used by the band
+==========================================================================
+
+Cross-location seed model on the Location 1 review pool (seed 42):  Brier = 0.3385   10-bin ECE = 0.3658   n = 8191
+           bin      n  mean pred  obs. freq
+     [0.0,0.1)     74      0.062      0.041
+     [0.1,0.2)    181      0.143      0.022
+     [0.2,0.3)     82      0.255      0.098
+     [0.3,0.4)     43      0.354      0.070
+     [0.4,0.5)    169      0.459      0.089
+     [0.5,0.6)    242      0.563      0.273
+     [0.6,0.7)    456      0.642      0.191
+     [0.7,0.8)    707      0.758      0.280
+     [0.8,0.9)   1146      0.846      0.131
+     [0.9,1.0)   5091      0.985      0.700
+  inside band 0.2-0.8: n = 1698 (20.7%)   mean pred = 0.635   observed jamming frequency = 0.222
+
+Within-location model on the Location 1 test split (49 features):  Brier = 0.0092   10-bin ECE = 0.0347   n = 4915
+           bin      n  mean pred  obs. freq
+     [0.0,0.1)   2228      0.022      0.000
+     [0.1,0.2)    129      0.142      0.000
+     [0.2,0.3)     41      0.246      0.000
+     [0.3,0.4)     22      0.345      0.000
+     [0.4,0.5)     23      0.445      0.522
+     [0.5,0.6)     23      0.559      0.565
+     [0.6,0.7)     50      0.653      0.800
+     [0.7,0.8)     84      0.758      0.964
+     [0.8,0.9)    171      0.862      0.988
+     [0.9,1.0)   2144      0.981      0.999
+  inside band 0.2-0.8: n = 243 (4.9%)   mean pred = 0.564   observed jamming frequency = 0.601
+==========================================================================
+  EXPERIMENT D: runtime and memory, 49 vs 9 features (within location)
+==========================================================================
+  platform: Intel64 Family 6 Model 165 Stepping 2, GenuineIntel | Windows 11 | python 3.12.2
+  9-feature set (within-location SHAP ranking): ['total_gain_db_mean', 'total_gain_db_q25', 'avgpwr_db_max', 'rssi_std', 'max_magnitude_max', 'max_magnitude_std', 'total_gain_db_q50', 'base_pwr_db_q75', 'total_gain_db_min']
+
+  49 features
+    accuracy            : 99.21%
+    train time (s)      : 7.075 +/- 0.918
+    inference time (s)  : 0.0857 +/- 0.0039   (17.4 us/window)
+    total tree nodes    : 8668
+    pickled model (KiB) : 738.4
+
+  9 features
+    accuracy            : 98.80%
+    train time (s)      : 4.469 +/- 0.709
+    inference time (s)  : 0.0911 +/- 0.0157   (18.5 us/window)
+    total tree nodes    : 9942
+    pickled model (KiB) : 837.3
+
+Done.
